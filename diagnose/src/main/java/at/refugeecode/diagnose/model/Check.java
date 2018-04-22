@@ -50,8 +50,6 @@ public class  Check {
         System.out.println( diseasesListHashMap.toString());
         System.out.println(symptomsList.toString());
         Optional<Map.Entry<String, Set<String>>> first = diseasesListHashMap.entrySet().stream().filter(e -> e.getValue().containsAll(symptomsList)).findFirst();
-
-
         if (first.isPresent()){
             return first.get().getKey();
         }

@@ -5,7 +5,9 @@ import at.refugeecode.diagnose.model.Check;
 import at.refugeecode.diagnose.model.Diseases;
 import at.refugeecode.diagnose.model.Paitent;
 import at.refugeecode.diagnose.model.Symptoms;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
@@ -17,9 +19,26 @@ public class EndPoint {
     List<Diseases> diseasesList = new ArrayList<>();
     List<Symptoms> symptomsList = new ArrayList<>();
 
+
+
+    private  RestTemplate restTemplate;
+
+    public EndPoint(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+
     @PostMapping("/diagnose")
     void setPaiten(@RequestBody Paitent paitent){
         paitentList.add(paitent);
+    }
+
+
+
+    @GetMapping("/sendpaitent")
+    void sendPaitent(){
+        for (Paitent p:paitentList) {
+            restTemplate.postForEntity("http://localhost:8082/patients", p, Paitent.class);
+        }
     }
 
 

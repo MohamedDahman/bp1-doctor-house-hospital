@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="diagnose" />
         <module name="hospital" />
+        <module name="nursery" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="diagnose" target="9" />
       <module name="hospital" target="9" />
+      <module name="nursery" target="9" />
     </bytecodeTargetLevel>
   </component>
 </project>
